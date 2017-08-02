@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 */
 
-// var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 // app.use(express.json());
 // app.use(express.urlencoded());
 
@@ -21,6 +21,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var routes = require("./ProjFiles/Services/routes.js")(app, conn);
 
+/*
 var server = app.listen(3000, function () {
+    console.log("Listening on port %s...", server.address().port);
+});
+*/
+var server = app.listen(port, function () {
     console.log("Listening on port %s...", server.address().port);
 });
