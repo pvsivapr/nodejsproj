@@ -3,6 +3,8 @@
 //       $password = "\$iva02071992mmplayer";
 //       $dbName = "mmplayerdb";
 //       $host = 3306;
+
+
 var mysql = require('mysql');
 module.exports =
 {
@@ -20,3 +22,21 @@ module.exports =
     return con;
   }
 }
+
+// var mysql = require('mysql');
+// module.exports =
+// {
+//   GetConnection1 : function (){
+//     var con = mysql.createConnection({
+//       host: "localhost",
+//       user: "root",
+//       password: "",
+//       database: "sivaprasaddb"
+//     });
+//     con.connect(function(err) {
+//       if (err) throw err;
+//       console.log("Connected!");
+//     });
+//     return con;
+//   }
+// }
