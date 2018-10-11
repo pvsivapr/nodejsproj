@@ -57,8 +57,12 @@ var appRouter = function(app, conn)
 module.exports = appRouter;
 */
 
-var ConnService = require('../ConnectionService.js');
-var conn = ConnService.GetConnection1();
+
+var conn = require("./SeperateDBData/dbConnnection.js");
+// var ConnService = require('../ConnectionService.js');
+// var conn = ConnService.GetConnection1();
+
+var tableName = "serviceproviders";
 var appRouter = 
 {
   // parse application/x-www-form-urlencoded
@@ -68,7 +72,7 @@ var appRouter =
 
   GetAllServiceProviders : function(req, res) 
   {
-      var sql ="Select * FROM sivaprasad_userdb";//"Select * FROM indianpincodes";
+      var sql ="Select * FROM "+tableName;//"Select * FROM indianpincodes";
       conn.query(sql, function (err, result)
       {
           if (err)
@@ -91,7 +95,7 @@ var appRouter =
       }
       else
       {
-          var sql = "SELECT *, ( 6371 * acos( cos( radians("+req.body.user_location_latitude+") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+req.body.user_location_longitude+") ) + sin( radians("+req.body.user_location_latitude+") ) * sin( radians( latitude ) ) ) ) AS distance FROM locations_basic_sample HAVING distance < "+req.body.user_allowed_distance+" ORDER BY distance";// LIMIT 0 , 20;";//"Select * FROM locations_basic_sample";
+          var sql = "SELECT *, ( 6371 * acos( cos( radians("+req.body.user_location_latitude+") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+req.body.user_location_longitude+") ) + sin( radians("+req.body.user_location_latitude+") ) * sin( radians( latitude ) ) ) ) AS distance FROM "+tableName+" HAVING distance < "+req.body.user_allowed_distance+" ORDER BY distance";// LIMIT 0 , 20;";//"Select * FROM locations_basic_sample";
           conn.query(sql, function (err, result)
           {
               if (err)

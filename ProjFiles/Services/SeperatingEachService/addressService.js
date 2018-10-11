@@ -1,7 +1,10 @@
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var conn = require("./SeperateDBData/dbConnnection.js");
 
-var ConnService = require('../ConnectionService.js');
-var conn = ConnService.GetConnection1();
+// var ConnService = require('../ConnectionService.js');
+// var conn = ConnService.GetConnection1();
+
+var tableName = "indianpincodes";
 var appRouter =
 {
   // parse application/x-www-form-urlencoded
@@ -16,7 +19,7 @@ var appRouter =
 
   GetAllStates : function(req, res) 
   {
-      var sql = "SELECT DISTINCT state_name FROM indianpincodes";//"Select * FROM indianpincodes";
+      var sql = "SELECT DISTINCT state_name FROM "+tableName;//"Select * FROM indianpincodes";
       conn.query(sql, function (err, result)
       {
           if (err)
@@ -40,7 +43,7 @@ var appRouter =
     }
     else
     {
-        var sql = "SELECT DISTINCT district_name FROM indianpincodes WHERE state_name = "+ "'" + req.body.state_name + "'";
+        var sql = "SELECT DISTINCT district_name FROM "+tableName+" WHERE state_name = "+ "'" + req.body.state_name + "'";
         conn.query(sql, function (err, result)
         {
             if (err)
@@ -65,7 +68,7 @@ var appRouter =
     }
     else
     {
-        var sql = "SELECT DISTINCT mandal_name FROM indianpincodes WHERE district_name = "+ "'" + req.body.district_name + "'";
+        var sql = "SELECT DISTINCT mandal_name FROM "+tableName+" WHERE district_name = "+ "'" + req.body.district_name + "'";
         conn.query(sql, function (err, result)
         {
             if (err)
@@ -90,7 +93,7 @@ var appRouter =
     }
     else
     {
-        var sql = "SELECT * FROM indianpincodes WHERE district_name = "+ "'" + req.body.district_name + "'";
+        var sql = "SELECT * FROM "+tableName+" WHERE district_name = "+ "'" + req.body.district_name + "'";
         conn.query(sql, function (err, result)
         {
             if (err)
@@ -115,7 +118,7 @@ var appRouter =
     }
     else
     {
-        var sql = "SELECT * FROM indianpincodes WHERE mandal_name = "+ "'" + req.body.mandal_name + "'";
+        var sql = "SELECT * FROM "+tableName+" WHERE mandal_name = "+ "'" + req.body.mandal_name + "'";
         conn.query(sql, function (err, result)
         {
             if (err)

@@ -1,8 +1,15 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var ConnService = require('./ProjFiles/Services/ConnectionService.js');
 
+//for/if using common services
+/*
+var ConnService = require('./ProjFiles/Services/ConnectionService.js');
 var conn = ConnService.GetConnection1();
+*/
+
+//for/if using seperate services if we use above lines then the connection will be created / will be called multiple times
+
+
 var app = express();
 
 /*
@@ -19,10 +26,10 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//var routes = require("./ProjFiles/Services/routes.js")(app, conn);
-//var routes = require("./ProjFiles/Services/onthegoinfo.js")(app, conn);
-//var routes = require("./ProjFiles/Services/seperateroutes.js")(app, conn);
-var routes = require('./ProjFiles/Services/SeperatingEachService/seperateroutes.js');
+//var routes = require("./ProjFiles/Services/routes.js")(app, conn);//for common services
+//var routes = require("./ProjFiles/Services/onthegoinfo.js")(app, conn);//for common services
+//var routes = require("./ProjFiles/Services/seperateroutes.js")(app, conn);//for seperate services
+var routes = require('./ProjFiles/Services/SeperatingEachService/seperateroutes.js');//for seperate services
 //app.use('/api', routes);
 app.use('/', routes);
 
