@@ -69,6 +69,35 @@ var appRouter = function(app, conn)
     }
   });
 
+  app.post("/GetMandalsByDistrict", function(req, res) 
+  {
+    if(!req.body.district_name || !req.body.state_name)
+    {
+        res.send({"status": "error", "message": "missings a parameter", "locations": null});
+    }
+    else
+    {
+        var sql = "SELECT DISTINCT mandal_name FROM indianpincodes WHERE district_name = "+ "'" + req.body.district_name + "'";
+        conn.query(sql, function (err, result)
+        {
+            if (err)
+            {
+                throw err;
+            }
+            else
+            {
+                //console.log("Got all results successfully");
+                var data1 = JSON.stringify(result);
+                
+                //respObject = "Got all results successfullyyyyyyy";
+                //console.log(respObject);
+                res.send(data1);
+            }
+            //conn.end();
+        });
+    }
+  });
+
   app.post("/GetVillagesByDistrict", function(req, res) 
   {
     if(!req.body.district_name || !req.body.state_name)
@@ -78,6 +107,35 @@ var appRouter = function(app, conn)
     else
     {
         var sql = "SELECT * FROM indianpincodes WHERE district_name = "+ "'" + req.body.district_name + "'";
+        conn.query(sql, function (err, result)
+        {
+            if (err)
+            {
+                throw err;
+            }
+            else
+            {
+                //console.log("Got all results successfully");
+                var data1 = JSON.stringify(result);
+                
+                //respObject = "Got all results successfullyyyyyyy";
+                //console.log(respObject);
+                res.send(data1);
+            }
+            //conn.end();
+        });
+    }
+  });
+
+  app.post("/GetVillagesByMandal", function(req, res) 
+  {
+    if(!req.body.mandal_name || !req.body.district_name || !req.body.state_name)
+    {
+        res.send({"status": "error", "message": "missings a parameter", "locations": null});
+    }
+    else
+    {
+        var sql = "SELECT * FROM indianpincodes WHERE mandal_name = "+ "'" + req.body.mandal_name + "'";
         conn.query(sql, function (err, result)
         {
             if (err)

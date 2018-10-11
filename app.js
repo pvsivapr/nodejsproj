@@ -19,7 +19,14 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var routes = require("./ProjFiles/Services/routes.js")(app, conn);
+//var routes = require("./ProjFiles/Services/routes.js")(app, conn);
+//var routes = require("./ProjFiles/Services/onthegoinfo.js")(app, conn);
+//var routes = require("./ProjFiles/Services/seperateroutes.js")(app, conn);
+var routes = require('./ProjFiles/Services/SeperatingEachService/seperateroutes.js');
+//app.use('/api', routes);
+app.use('/', routes);
+
+
 
 /*
 var server = app.listen(3000, function () {
