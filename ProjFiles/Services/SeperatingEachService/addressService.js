@@ -28,8 +28,11 @@ var appRouter =
           }
           else
           {
-              var data1 = JSON.stringify(result);
-              res.send(data1);
+            var states_list = {"states_list" : result}
+            var data1 = JSON.stringify(states_list);
+            res.send(data1);
+            //   var data1 = JSON.stringify(result);
+            //   res.send(data1);
             }
             //conn.end();
       });
@@ -52,8 +55,11 @@ var appRouter =
             }
             else
             {
-                var data1 = JSON.stringify(result);
+                var districts_list = {"districts_list" : result}
+                var data1 = JSON.stringify(districts_list);
                 res.send(data1);
+                // var data1 = JSON.stringify(result);
+                // res.send(data1);
             }
             //conn.end();
         });
@@ -77,8 +83,12 @@ var appRouter =
             }
             else
             {
-                var data1 = JSON.stringify(result);
+                
+                var mandals_list = {"mandals_list" : result}
+                var data1 = JSON.stringify(mandals_list);
                 res.send(data1);
+                // var data1 = JSON.stringify(result);
+                // res.send(data1);
             }
             //conn.end();
         });
@@ -102,8 +112,11 @@ var appRouter =
             }
             else
             {
-                var data1 = JSON.stringify(result);
+                var villages_list = {"villages_list" : result}
+                var data1 = JSON.stringify(villages_list);
                 res.send(data1);
+                // var data1 = JSON.stringify(result);
+                // res.send(data1);
             }
             //conn.end();
         });
@@ -127,8 +140,11 @@ var appRouter =
             }
             else
             {
-                var data1 = JSON.stringify(result);
+                var villages_list = {"villages_list" : result}
+                var data1 = JSON.stringify(villages_list);
                 res.send(data1);
+                // var data1 = JSON.stringify(result);
+                // res.send(data1);
             }
             //conn.end();
         });
